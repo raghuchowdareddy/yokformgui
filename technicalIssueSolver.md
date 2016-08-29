@@ -13,3 +13,4 @@ gem install compass
 cd <myproject>
 compass install compass
 ========================    
+Issue 2:

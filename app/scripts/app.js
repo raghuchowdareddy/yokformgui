@@ -26,6 +26,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/vegitables', {
+        templateUrl: 'views/vegitable/vegitables.html',
+        controller: 'VegitablesCtrl',
+        controllerAs: 'vegitable'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
