@@ -17,4 +17,11 @@ angular.module('yokformguiApp')
     $scope.vegitables = vegitableService.getVegitables();
     console.log($scope.vegitables);
     
+    $scope.quantity = ['250gm', '500gm', '1kg', '2kg', '3kg'];
+    $scope.selectedQuantity='qunatity';
+    $scope.dropboxitemselected = function (item,quantitySelected) {
+    	item.selectedQuantity = quantitySelected;
+    	 console.log($scope.vegitables);
+    }
+    
   }]);

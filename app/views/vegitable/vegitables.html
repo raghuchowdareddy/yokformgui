@@ -1,13 +1,29 @@
 
 <div class="container-fluid">
 <div class="row">
-<div ng-repeat="key in vegitables">
-<div class='col-xs-8 col-sm-4'>
-<img class='img-responsive' src="images/vegitable/{{key.name}}" alt="img"><br>
-<div class='col-xs-8 col-sm-4'>
+<div ng-repeat="vegitable in vegitables">
 
+<div class='col-xs-8 col-sm-4 col-md-4 imageAndText'>
+
+<img class='img-responsive' src="images/vegitable/{{vegitable.name}}" alt="img">
+<div class="caption">
+    <h4><span>name:</span>{{vegitable.name}}</h4><br>
+	<h4><span>price:</span>{{vegitable.details.price}}</h4><br>
+	<h4><span>status:</span>{{vegitable.details.status}}</h4><br>
+</div>
+<div class="dropdown fluid">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            {{vegitable.selectedQuantity}}
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu dropdown-menu-left">
+    <li ng-repeat="a in quantity"><a ng-click="dropboxitemselected(vegitable,a)">{{a}}</a></li>
+  </ul>
+  <span>cart image</span>
+</div>
+<br>
 </div>
 </div>
 </div>
 </div>
-</div>
+
+
