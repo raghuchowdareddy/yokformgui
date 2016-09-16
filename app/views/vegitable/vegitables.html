@@ -10,20 +10,29 @@
     <h4><span>name:</span>{{vegitable.name}}</h4><br>
 	<h4><span>price:</span>{{vegitable.details.price}}</h4><br>
 	<h4><span>status:</span>{{vegitable.details.status}}</h4><br>
+	
 </div>
-<div class="dropdown fluid">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            {{vegitable.selectedQuantity}}
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu dropdown-menu-left">
-    <li ng-repeat="a in quantity"><a ng-click="dropboxitemselected(vegitable,a)">{{a}}</a></li>
-  </ul>
-  <span>cart image</span>
+  <!-- <select name ="selectedQuantity" ng-model="selectedQuantity" 
+         ng-options="a for a in quantity"
+         ng-change="dropboxitemselected(vegitable,selectedQuantity)">
+  </select> -->
+  <select name="selectedQuantity" id="selectedQuantity" ng-model="vegitable.details.selectedQuantity">
+      <option ng-repeat="option in quantity" value="{{option}}">{{option}}</option>
+    </select>
+  
+  <button type="button" class="btn btn-info btn-xs" ng-click="addToBuyList(vegitable)">Buy</button>
+  <button type="button" 
+     
+     class="btn btn-info btn-xs" ng-click="removeFromBuyList(vegitable)" >Remove</button>
+  
+</div>
+
+</div>
+<div class='col-md-8'>total</div>
+
 </div>
 <br>
 </div>
-</div>
-</div>
-</div>
+
 
 

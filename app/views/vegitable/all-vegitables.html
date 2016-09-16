@@ -1,0 +1,40 @@
+<div class="wrap">
+	<div class="box1">
+	<div ng-repeat="vegitable in vegitables">
+		<div class="col_1_of_3 span_1_of_3">
+			<a href="#">
+				<div class="view view-fifth">
+					<div class="top_box">
+						<h3 class="m_1">{{vegitable.name}}</h3>
+					  	<p class="m_2">{{vegitable.details.status}}</p>
+				        <div class="grid_img">
+						   <div class="css3"><img src="images/vegitable/{{vegitable.name}}" /></div>
+					       <div class="mask"><div class="info">Quick View</div></div>
+	                    </div>
+                       	<div class="price">Rs {{vegitable.details.price}}/Kg</div>
+					</div>
+				</div>
+			</a>
+				<div class="row">
+					<div class="col-xs-3 col-sm-3 col-md-5">
+						<select name="selectedQuantity" id="selectedQuantity" ng-model="vegitable.details.selectedQuantity">
+		      				<option ng-repeat="option in quantity" value="{{option}}">{{option}}</option>
+		    			</select>
+					</div>
+					<div class="col-xs-2 col-sm-3 col-md-3">
+							<button type="button" class="btn btn-info btn-xs" ng-click="addToBuyList(vegitable)">+ Add</button>
+					</div>
+					<div class="col-xs-2 col-sm-3 col-md-3">
+							<button type="button" class="btn btn-info btn-xs" ng-click="removeFromBuyList(vegitable)">- Del</button>
+					</div>
+				</div>
+					
+			    <div class="clear"></div>
+			
+		</div>
+		</div>
+		
+     
+  </div>
+	</div>
+</div>

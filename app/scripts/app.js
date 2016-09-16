@@ -1,4 +1,6 @@
-'use strict';
+(function() {
+	//'use strict';
+
 
 /**
  * @ngdoc overview
@@ -18,7 +20,31 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch'
-  ])
+  ]).config(config);
+config.$inject = ['$routeProvider', '$locationProvider'];
+function config($routeProvider, $locationProvider) {
+	$routeProvider
+	.when('/', {
+		//templateUrl : 'resources/default/default.view.html'
+			templateUrl: 'views/default/default.view.html',
+	        controller: 'MainCtrl',
+	        controllerAs: 'main'
+		})
+	.when('/vegitables', {
+        templateUrl: 'views/vegitable/all-vegitables.html',
+        controller: 'VegitablesCtrl',
+        controllerAs: 'vegitable'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl',
+        controllerAs: 'about'
+      })
+	.otherwise({
+		redirectTo : '/'
+	});
+}
+ /* //
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -26,6 +52,9 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/', {
+		templateUrl : 'views/default/default.view.html'
+	  })
       .when('/vegitables', {
         templateUrl: 'views/vegitable/vegitables.html',
         controller: 'VegitablesCtrl',
@@ -39,4 +68,5 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  });*/
+})();
