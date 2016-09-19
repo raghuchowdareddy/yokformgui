@@ -8,12 +8,11 @@
  * Controller of the yokformguiApp
  */
 angular.module('yokformguiApp')
-  .controller('MainCtrl', ['$scope','$rootScope','VegitableService', function ($scope,$rootScope,VegitableService) {
-    $scope.count=0;
+  .controller('MainCtrl', ['$scope','$rootScope','VegitableFactory', function ($scope,$rootScope,VegitableFactory) {
     
-    $scope.$on('valuesUpdated', function() {
-        $scope.selectedVegitables = VegitableService.selectedVegitables;
-        $scope.count = VegitableService.count;
+    VegitableFactory.subscribe($scope,function someThingChanged(event,data){
+    	$scope.count = data.vegitablesBagged.length;
+    	console.log(data.vegitablesBagged +"  "+ event);
     });
     
   }]);

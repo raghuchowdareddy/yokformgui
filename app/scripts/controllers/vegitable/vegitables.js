@@ -8,19 +8,24 @@
  * Controller of the yokformguiApp
  */
 angular.module('yokformguiApp')
-  .controller('VegitablesCtrl', ['$scope','$rootScope','VegitableService', function ($scope,$rootScope,VegitableService) {
-    console.log("fdfdf");
-    $scope.print="100000";
-    $scope.selectedVegitables = [];
-  
-    $scope.vegitables = VegitableService.getVegitables();
-    console.log($scope.vegitables);
+  .controller('VegitablesCtrl', function ($scope,$rootScope,vegService,VegitableFactory) {
+    
+    $rootScope.selectedVegitables = [];
+    $scope.vegitables = VegitableFactory.getVegitables();
+    console.log("veggis are "+$scope.vegitables);
     
     $scope.quantity = ['','250gm', '500gm', '1kg', '2kg', '3kg'];
+ 
+    $scope.$watch('selectedVegitables', function(newValue, oldValue){
+    	VegitableFactory.notify(newValue);
+    	console.log(newValue.length);
+    }, true);
     
-    $scope.$watch('selectedVegitables', function() {
-    	VegitableService.updateTopValue($scope.selectedVegitables);
-    });
+//    $scope.$watch('VegitableFactory.selectedVegitables', function() {
+//    	console.log("hey");
+//    	//VegitableFactory.updateTopValue($scope.selectedVegitables);
+//    });
+    
     
     /*$scope.dropboxitemselected = function (item,quantitySelected) {
     	item.details.selectedQuantity = quantitySelected;
@@ -28,21 +33,22 @@ angular.module('yokformguiApp')
     	 console.log($scope.selectedVegitables);
     };*/
     $scope.addToBuyList = function(selectedVegitable){
-    	$scope.print="2000";
+    	$rootScope.print=selectedVegitable;
+    	$rootScope.selectedVegitables.push(selectedVegitable);
     	//selectedVegitable.details.enableRemoveButton=false;
-    	$scope.selectedVegitables.push(selectedVegitable);
+    	VegitableFactory.selectedVegitables=selectedVegitable;
     	
-    	console.log($scope.selectedVegitables.length);
+    	console.log($rootScope.selectedVegitables);
     	
     };
     $scope.removeFromBuyList = function(selectedVegitable){
     	selectedVegitable.details.enableRemoveButton=false;
     	
     	selectedVegitable.details.selectedQuantity='';
-    	var position = $scope.selectedVegitables.indexOf(selectedVegitable);
-    	$scope.selectedVegitables.splice(position, 1);
-    	console.log($scope.selectedVegitables);
+    	var position = $rootScope.selectedVegitables.indexOf(selectedVegitable);
+    	$rootScope.selectedVegitables.splice(position, 1);
+    	console.log($rootScope.selectedVegitables);
     }
     
-  }]);
+  });
 

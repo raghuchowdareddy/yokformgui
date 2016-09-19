@@ -1,73 +1,39 @@
 'use strict'
 
-//angular.module('yokformguiApp')
-//.service('vegitableService',function($http, $q){
-//	this.getVegitables = function(){
-//		return vegitables;
-//	}
-//	    
-//});
-
-angular.module('vegitableService', []).factory('VegitableService', function($rootScope,$http,$q){
-	var service = {};
-    service.selectedVegitables = [];
-    service.count=0;
-    
-    
-
-    service.updateTopValue = function(value){
-        this.selectedVegitables = value;
-        this.count=10;
-        $rootScope.$broadcast("valuesUpdated");
-    }
-    
-    service.getVegitables = function(){
-	  return this.vegitables;
-    }
-    
-    service.vegitables=[
-                        {'name':'tomatoes.jpg',
-                       	 'details':
-                       	 {
-                       		 'price':10.0,'status':'available','description':'i am tomato','enableRemoveButton':'false','selectedQuantity':''
-                       	 }
-                        },
-                        {'name':'potatoes.jpg',
-                       	 'details':
-                       	 {
-                       		 'price':10.0,'status':'available','description':'i am potatoes','enableRemoveButton':'false','selectedQuantity':''
-                       	 }
-                        },
-                        {'name':'onion.jpg',
-                       	 'details':
-                       	 {
-                       		 'price':10.0,'status':'available','description':'i am onion','enableRemoveButton':'false','selectedQuantity':''
-                       	 }
-                        },
-                        {'name':'tomatoes.jpg',
-                       	 'details':
-                       	 {
-                       		 'price':10.0,'status':'available','description':'i am tomato','enableRemoveButton':'false','selectedQuantity':''
-                       	 }
-                        },
-                        {'name':'potatoes.jpg',
-                       	 'details':
-                       	 {
-                       		 'price':10.0,'status':'available','description':'i am potatoes','enableRemoveButton':'false','selectedQuantity':''
-                       	 }
-                        },
-                        {'name':'onion.jpg',
-                       	 'details':
-                       	 {
-                       		 'price':10.0,'status':'available','description':'i am onion','enableRemoveButton':'false','selectedQuantity':''
-                       	 }
-                        }
-                      ] ;
+angular.module('yokformguiApp')
+.service('vegService',function($http, $q,$rootScope){
 	
-});
-var demo = angular.module('yokformguiApp', ['vegitableService']);
-/*//input parameters
-var vegitables = 
+	this.getVegitables = function(){
+		return all_vegitables;
+	}
+	    
+})
+.factory('VegitableFactory', function($rootScope){
+	var service = {};
+    service.vegitablesBagged ;
+    service.totalItems;
+
+	return{
+		subscribe: function(scope, callback){
+			console.log('in subscribe');
+			var handler = $rootScope.$on('selectedVegitables',callback);
+			scope.$on('$destroy',handler)
+		},
+		notify: function(newValue){
+			console.log('in notif');
+			service.vegitablesBagged = newValue;
+			$rootScope.$emit('selectedVegitables',{vegitablesBagged: service.vegitablesBagged});
+		},
+		getVegitables: function(){
+     	     return all_vegitables;
+		}
+		
+	};
+	
+});   
+ 
+//input parameters
+var all_vegitables = 
     [
      {'name':'tomatoes.jpg',
     	 'details':
@@ -105,7 +71,7 @@ var vegitables =
     		 'price':10.0,'status':'available','description':'i am onion','enableRemoveButton':'false','selectedQuantity':''
     	 }
      }
-   ] ;*/
+   ] ;
 //
 //define(['yokformguiApp'], function(yokformguiApp){
 //	
